@@ -89,7 +89,7 @@ def on_info(server: PluginServerInterface, info: Info):
 	global here_user
 	if info.is_player and '!!here' in info.content:
 		if server.is_rcon_running() and config.use_rcon_if_possible:
-			name = info.player
+			name = str(info.player)
 			position = process_coordinate(re.search(r'\[.*]', server.rcon_query('data get entity {} Pos'.format(name))).group())
 			dimension = process_dimension(server.rcon_query('data get entity {} Dimension'.format(name)))
 			display(server, name, position, dimension)
